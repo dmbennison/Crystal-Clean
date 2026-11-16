@@ -2,9 +2,13 @@
 
 Static site for GitHub Pages. No build step.
 
-1. Create a repo, upload everything in this folder to the root of the `main` branch.
+Live address: https://dmbennison.github.io/Crystal-Clean/
+
+1. Upload everything in this folder to the root of the `main` branch of the `Crystal-Clean` repo
+   (include the hidden `.nojekyll` file).
 2. Repo Settings > Pages > Deploy from branch > `main` / root.
-3. If you use a custom domain, keep `CNAME`, point DNS at GitHub Pages, and tick Enforce HTTPS.
-   If you use the free `username.github.io/repo` address instead, delete `CNAME` and replace
-   `https://crystalcleans.co.uk` with your real URL in index.html, robots.txt, sitemap.xml and llms.txt.
-4. Add the site to Google Search Console and Bing Webmaster Tools and submit sitemap.xml.
+3. Add the site to Google Search Console (URL prefix) and Bing Webmaster Tools, then submit
+   https://dmbennison.github.io/Crystal-Clean/sitemap.xml
+4. When you buy a domain: add a `CNAME` file containing the domain, point DNS at GitHub Pages,
+   and replace `https://dmbennison.github.io/Crystal-Clean` with the new address in
+   index.html, robots.txt, sitemap.xml and llms.txt.

@@ -19,4 +19,4 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
-Sitemap: https://crystalcleans.co.uk/sitemap.xml
+Sitemap: https://dmbennison.github.io/Crystal-Clean/sitemap.xml
