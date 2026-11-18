@@ -6,5 +6,5 @@ window.ENQUIRY_CONFIG = {
   endpoint: "",
   inbox: "",
   publicKey: "",
-  turnstileSiteKey: ""
+  turnstileSiteKey: "0x4AAAAAAGHsxBAbQxDfpvRU"
 };
