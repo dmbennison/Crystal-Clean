@@ -185,6 +185,18 @@ nav a:hover{color:var(--sky)}
 .area-list{display:flex;flex-wrap:wrap;gap:.7rem;list-style:none;padding:0;margin:1.5rem 0}
 .area-list li{background:#fff;border:1px solid var(--line);border-radius:999px;padding:.5rem 1.2rem;font-weight:600;color:var(--navy)}
 
+/* special offer banner (set from the Round Book app) */
+.offer{position:relative;background:linear-gradient(90deg,var(--navy),var(--blue));color:#fff;padding:.85rem 3rem .85rem 1rem;text-align:center}
+.offer[hidden]{display:none}
+.offer-in{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.45rem 1rem;max-width:var(--max);margin:0 auto}
+.offer-tag{background:var(--red);color:#fff;font-weight:800;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;padding:.3rem .75rem;border-radius:999px}
+.offer-text{margin:0;font:700 clamp(1.05rem,2.6vw,1.4rem)/1.3 var(--display)}
+.offer-until{font-size:.95rem;opacity:.92}
+.offer-cta{background:#fff;color:var(--navy);font-weight:700;text-decoration:none;padding:.5rem 1.1rem;border-radius:999px;white-space:nowrap}
+.offer-cta:hover{background:var(--wash)}
+.offer-x{position:absolute;top:50%;right:.6rem;transform:translateY(-50%);width:2.2rem;height:2.2rem;border:0;border-radius:50%;background:rgba(255,255,255,.15);color:#fff;font-size:1.4rem;line-height:1;cursor:pointer}
+.offer-x:hover{background:rgba(255,255,255,.3)}
+
 /* enquiry form */
 .enquire{background:var(--wash)}
 .enquire-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:clamp(1.2rem,3vw,2rem);max-width:760px}
@@ -233,6 +245,15 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem}
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
+<aside class="offer" id="offerBanner" role="region" aria-label="Special offer" hidden>
+  <div class="offer-in">
+    <span class="offer-tag">Special offer</span>
+    <p class="offer-text" id="offerText"></p>
+    <span class="offer-until" id="offerUntil"></span>
+    <a class="offer-cta" id="offerCta" href="#contact">Get a free quote</a>
+  </div>
+  <button class="offer-x" id="offerX" type="button" aria-label="Hide this offer">&times;</button>
+</aside>
 
 <header>
   <div class="wrap bar">
@@ -536,6 +557,38 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem}
     btn.disabled = false; btn.textContent = 'Send enquiry';
     if(widget !== null && window.turnstile) window.turnstile.reset(widget);
   });
+})();
+</script>
+<script>
+/* Special offer banner. The offer is set from the Round Book app and kept by the same Cloudflare worker as the enquiry inbox;
+   this just asks for the current one (it is public, so it is never anything private) and shows it as plain text. It goes by
+   itself after its end date. */
+(function(){
+  var cfg = window.ENQUIRY_CONFIG || {};
+  if(!cfg.endpoint || !cfg.inbox || !window.fetch) return;
+  var banner = document.getElementById('offerBanner');
+  fetch(cfg.endpoint.replace(/\/+$/, '') + '/v1/inbox/' + cfg.inbox + '/notice')
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(j){
+      var n = j && j.notice;
+      if(!n || !n.text) return;
+      var seen = '';
+      try{ seen = sessionStorage.getItem('offerHidden') || ''; }catch(e){}
+      if(seen === n.text) return; // hidden by the visitor on this visit
+      document.getElementById('offerText').textContent = n.text;
+      if(n.until){
+        var d = new Date(n.until + 'T12:00:00');
+        if(!isNaN(d)) document.getElementById('offerUntil').textContent = 'Ends ' + d.toLocaleDateString('en-GB', { day:'numeric', month:'long' });
+      }
+      var enquire = document.getElementById('enquire');
+      document.getElementById('offerCta').setAttribute('href', enquire && !enquire.hidden ? '#enquire' : '#contact');
+      banner.hidden = false;
+      document.getElementById('offerX').addEventListener('click', function(){
+        banner.hidden = true;
+        try{ sessionStorage.setItem('offerHidden', n.text); }catch(e){}
+      });
+    })
+    .catch(function(){ /* no banner */ });
 })();
 </script>
 </body>

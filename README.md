@@ -29,3 +29,9 @@ Each enquiry is encrypted in the visitor's browser with a public key, and only t
 5. If the worker has `ALLOWED_ORIGIN` set, it must include this website's address (and your domain later), separated by commas.
 
 When you buy a domain, also add it to the Turnstile widget's hostnames and to `ALLOWED_ORIGIN`.
+
+**Important:** `enquiry-config.js` holds your own settings (the inbox and the public key from Round Book, and the Turnstile site
+key). It is left out of the zips of website updates so that uploading an update can't overwrite it. If the enquiry form ever
+disappears from the site, that file has been replaced by the empty one: copy the settings again from Round Book (Sales >
+Enquiries > the cog > Website settings > Copy settings for the website), paste them over everything in the file, and put the
+Turnstile site key back between the quotes.
