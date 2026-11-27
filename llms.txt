@@ -8,8 +8,18 @@
 - Fascia and soffit cleaning: from £70
 Final prices depend on property size and condition. Quotes are free.
 
-## Areas covered
-South Tyneside, South Shields, Jarrow, Hebburn, Cleadon, Boldon, Washington, Newcastle, Sunderland, Seaham, Murton
+## Areas covered (each has its own page with its postcodes)
+- South Tyneside (NE31–NE36, SR6): https://dmbennison.github.io/Crystal-Clean/areas/south-tyneside/
+- South Shields (NE33, NE34): https://dmbennison.github.io/Crystal-Clean/areas/south-shields/
+- Jarrow (NE32): https://dmbennison.github.io/Crystal-Clean/areas/jarrow/
+- Hebburn (NE31): https://dmbennison.github.io/Crystal-Clean/areas/hebburn/
+- Cleadon (SR6): https://dmbennison.github.io/Crystal-Clean/areas/cleadon/
+- Boldon (NE35, NE36): https://dmbennison.github.io/Crystal-Clean/areas/boldon/
+- Washington (NE37, NE38): https://dmbennison.github.io/Crystal-Clean/areas/washington/
+- Newcastle (NE1–NE7, NE12, NE13, NE15): https://dmbennison.github.io/Crystal-Clean/areas/newcastle/
+- Sunderland (SR1–SR6): https://dmbennison.github.io/Crystal-Clean/areas/sunderland/
+- Seaham (SR7): https://dmbennison.github.io/Crystal-Clean/areas/seaham/
+- Murton (SR7): https://dmbennison.github.io/Crystal-Clean/areas/murton/
 
 ## Contact
 - Phone / text / WhatsApp: 07415 085860
